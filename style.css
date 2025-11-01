@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Shopify-Style Store Theme (ChokeFree - Calm & Trustworthy)
+   ========================================================================== */
+
+:root {
+  --mint: #AEE1E1;        /* soothing teal */
+  --orange: #0077B6;      /* trust blue for buttons and highlights */
+  --gray: #2F3E46;        /* deep professional gray */
+  --light-gray: #6C757D;  /* neutral text gray */
+  --white: #FFFFFF;
+  --bg: #F7FAFC;          /* soft blue background */
+
+  --font: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+/* ==================== Base ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--gray);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==================== Header ==================== */
+header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  position: relative;
+}
+
+#logo {
+  height: 103px;
+  transform: translateY(-2px);
+  object-fit: contain;
+}
+
+nav a {
+  color: var(--gray);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  color: var(--orange);
+}
+
+/* ==================== Product Section ==================== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .product {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.product img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.product img:hover {
+  transform: scale(1.02);
+}
+
+/* ==================== Product Info ==================== */
+.product-info {
+  text-align: left;
+}
+
+.product-info h1 {
+  font-size: 3.5em;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  padding-bottom: 100px;
+}
+
+.product-info p {
+  font-size: 1rem;
+  color: var(--light-gray);
+  margin-bottom: 1.5rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.price span {
+  text-decoration: line-through;
+  color: var(--light-gray);
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* ==================== Button ==================== */
+.btn {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #005f8d;
+  transform: translateY(-2px);
+}
+
+/* ==================== Footer ==================== */
+footer {
+  background: var(--mint);
+  color: var(--gray);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  font-weight: 500;
+}
+
+.quantity {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity label {
+  font-weight: 500;
+  color: var(--gray);
+}
+
+.quantity input {
+  width: 70px;
+  padding: 0.5rem;
+  border: 2px solid var(--mint);
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  transition: var(--transition);
+}
+
+.quantity input:focus {
+  border-color: var(--orange);
+}
+
+/* ==================== Mobile Navbar ==================== */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--gray);
+  user-select: none;
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+  header {
+    height: 110px;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+  }
+
+  #logo {
+    height: 110px;
+    margin: 0;
+    transform: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    color: var(--gray);
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--white);
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    display: none;
+    z-index: 10;
+  }
+
+  nav.show {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  nav a {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .product {
+    padding: 1.5rem;
+  }
+
+  .product-info h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  .price {
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .btn {
+    display: block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    margin: 0.5rem auto 0;
+    width: auto;
+    min-width: 150px;
+  }
+
+  .btn:hover {
+    background: #005f8d;
+    transform: translateY(-2px);
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .product-info p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.4rem;
+    min-width: 130px;
+  }
+
+  .price {
+    font-size: 1.3rem;
+  }
+}
+
+/* === IMAGE CAROUSEL === */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: opacity 0.4s ease;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 2rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.arrow:hover {
+  background: var(--orange);
+  color: white;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* === Hide arrows on mobile === */
+@media (max-width: 768px) {
+  .arrow { display: none; }
+  .carousel img { width: 100%; border-radius: 10px; }
+}

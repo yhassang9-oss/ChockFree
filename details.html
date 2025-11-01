@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChockFree Order Details </title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="details.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="Images/logo.png" alt="Yachang Hassang Enterprise Logo" id="logo">
+  </header>
+
+  <!-- Form -->
+  <main>
+    <form id="orderForm" class="order-form" method="POST" action="https://script.google.com/macros/s/AKfycbzR_AfTG0xaMNbvQ-MtQmtyjjn8BjmBaZAxhJBqvPJIWZmNXDkbyjtex3EPJPVDASFS9w/exec">
+      <h2>Enter Your Details</h2>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+      <label for="address">Full Address</label>
+      <textarea id="address" name="address" rows="3" placeholder="Enter your full address (with PIN code)" required></textarea>
+
+      <label for="payment">Payment Method</label>
+      <select id="payment" name="payment" required>
+        <option value="Prepaid (Online Payment)">Prepaid (Online Payment)</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+      </select>
+
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" name="notes" rows="2" placeholder="Any extra instructions?"></textarea>
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 <strong>Yachang Hassang Enterprise</strong> | All Rights Reserved</p>
+  </footer>
+
+  <!-- ======== Google Sheet Integration ======== -->
+  <script>
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const paymentMethod = document.getElementById('payment').value;
+
+    fetch(this.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+      if (paymentMethod === "Cash on Delivery") {
+        alert('✅ Order placed successfully! (Cash on Delivery)');
+        window.location.href = "thankyou.html"; // Redirect to thank you page
+      } else if (paymentMethod === "Prepaid (Online Payment)") {
+        alert('✅ Order submitted! Redirecting to payment...');
+        window.location.href = "https://rzp.io/rzp/hOzMSZGc"; // Razorpay link
+      }
+      this.reset();
+    })
+    .catch(err => {
+      console.error(err);
+      alert('❌ Something went wrong. Please try again.');
+    });
+  });
+  </script>
+</body>
+</html>
